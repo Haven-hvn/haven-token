@@ -1,5 +1,5 @@
-import React from 'react';
-import { Menu, X, Brain } from 'lucide-react';
+import React from "react";
+import { Menu, X, Brain } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -12,18 +12,37 @@ const Header = () => {
             <Brain className="h-8 w-8 text-purple-500" />
             <span className="ml-2 text-2xl font-bold text-white">HAVEN</span>
           </div>
-          
+
           <nav className="hidden md:flex space-x-8">
-            <a href="#technology" className="text-gray-300 hover:text-purple-500 transition">Technology</a>
-            <a href="#use-cases" className="text-gray-300 hover:text-purple-500 transition">Use Cases</a>
-            <a href="#tokenomics" className="text-gray-300 hover:text-purple-500 transition">Tokenomics</a>
+            <a
+              href="#technology"
+              className="text-gray-300 hover:text-purple-500 transition"
+            >
+              Technology
+            </a>
+            <a
+              href="#use-cases"
+              className="text-gray-300 hover:text-purple-500 transition"
+            >
+              Use Cases
+            </a>
+            <a
+              href="#tokenomics"
+              className="text-gray-300 hover:text-purple-500 transition"
+            >
+              Tokenomics
+            </a>
           </nav>
 
-          <button 
+          <button
             className="md:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
@@ -32,9 +51,24 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#technology" className="block px-3 py-2 text-gray-300 hover:text-purple-500">Technology</a>
-            <a href="#use-cases" className="block px-3 py-2 text-gray-300 hover:text-purple-500">Use Cases</a>
-            <a href="#tokenomics" className="block px-3 py-2 text-gray-300 hover:text-purple-500">Tokenomics</a>
+            <a
+              href="#technology"
+              className="block px-3 py-2 text-gray-300 hover:text-purple-500"
+            >
+              Technology
+            </a>
+            <a
+              href="#use-cases"
+              className="block px-3 py-2 text-gray-300 hover:text-purple-500"
+            >
+              Use Cases
+            </a>
+            <a
+              href="#tokenomics"
+              className="block px-3 py-2 text-gray-300 hover:text-purple-500"
+            >
+              Tokenomics
+            </a>
           </div>
         </div>
       )}
