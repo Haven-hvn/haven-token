@@ -6,44 +6,41 @@ const Footer = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 15, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100 },
+      transition: { type: "spring", stiffness: 50, damping: 15 },
     },
   };
 
   const linkVariants = {
     hover: {
-      scale: 1.05,
-      x: 10,
-      transition: { type: "spring", stiffness: 400 },
+      x: 5,
+      transition: { type: "spring", stiffness: 200, damping: 10 },
     },
   };
 
   return (
-    <footer className="relative bg-gradient-to-b from-black via-black to-purple-900/20 text-white py-16 overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white py-16 overflow-hidden">
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative"
       >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* About Section */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-              About Haven
-            </h3>
+            <h3 className="text-xl font-semibold ">About Haven</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
               Haven is a revolutionary crypto network focused on privacy,
               security, and decentralized solutions for digital assets.
@@ -52,9 +49,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-              Quick Links
-            </h3>
+            <h3 className="text-xl font-semibold">Quick Links</h3>
             <ul className="space-y-3">
               {["Whitepaper", "Technology", "Use Cases", "Tokenomics"].map(
                 (item) => (
@@ -65,9 +60,9 @@ const Footer = () => {
                   >
                     <a
                       href="#"
-                      className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-300"
+                      className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-200"
                     >
-                      <span className="h-px w-5 bg-purple-500 transform origin-left group-hover:scale-x-150 transition-transform"></span>
+                      <span className="h-px w-4 bg-gradient-to-r from-red-400 to-pink-600 transform origin-left group-hover:w-5 transition-all duration-200"></span>
                       <span>{item}</span>
                     </a>
                   </motion.li>
@@ -78,9 +73,7 @@ const Footer = () => {
 
           {/* Resources */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-              Resources
-            </h3>
+            <h3 className="text-xl font-semibold bg-clip-text ">Resources</h3>
             <ul className="space-y-3">
               {["Documentation", "FAQs", "Community", "Blog"].map((item) => (
                 <motion.li
@@ -90,9 +83,9 @@ const Footer = () => {
                 >
                   <a
                     href="#"
-                    className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-300"
+                    className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-200"
                   >
-                    <span className="h-px w-5 bg-purple-500 transform origin-left group-hover:scale-x-150 transition-transform"></span>
+                    <span className="h-px w-4 bg-gradient-to-r from-red-400 to-pink-600 transform origin-left group-hover:w-5 transition-all duration-200"></span>
                     <span>{item}</span>
                   </a>
                 </motion.li>
@@ -102,7 +95,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+            <h3 className="text-xl font-semibold bg-clip-text ">
               Connect With Us
             </h3>
             <div className="flex flex-col space-y-3">
@@ -128,13 +121,13 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white flex items-center gap-3 group transition-all duration-300"
+                  className="text-gray-300 hover:text-white flex items-center gap-3 group transition-all duration-200"
                   whileHover={{
-                    x: 10,
-                    transition: { type: "spring", stiffness: 400 },
+                    x: 5,
+                    transition: { type: "spring", stiffness: 200, damping: 10 },
                   }}
                 >
-                  <span className="bg-gradient-to-r  p-2 rounded-full transform group-hover:scale-110 transition-transform">
+                  <span className="bg-gradient-to-t p-2 rounded-full opacity-80 group-hover:opacity-100 transition-all duration-200">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -156,7 +149,7 @@ const Footer = () => {
         {/* Copyright */}
         <motion.div
           variants={itemVariants}
-          className="border-t border-purple-900/30 mt-12 pt-8 text-center"
+          className="border-t border-red-500/10 mt-12 pt-8 text-center"
         >
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} Haven. All rights reserved.
@@ -165,10 +158,20 @@ const Footer = () => {
       </motion.div>
 
       {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 via-transparent to-transparent" />
-        <div className="absolute -top-24 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl transform -translate-x-1/2" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute -top-32 left-1/2 w-[40rem] h-[40rem] bg-gradient-to-br from-red-400/5 to-pink-600/5 rounded-full blur-3xl transform -translate-x-1/2"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-gradient-to-tl from-red-400/5 to-pink-600/5 rounded-full blur-3xl"
+        />
       </div>
     </footer>
   );
