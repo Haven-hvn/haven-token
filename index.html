@@ -1,10 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HAVEN Network</title>
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=plus-jakarta-sans@600,500,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "ClashDisplay";
+        font-display: swap;
+        src: url("https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500")
+          format("woff2");
+      }
+      html,
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        min-height: 100vh;
+        background-color: #000000;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
