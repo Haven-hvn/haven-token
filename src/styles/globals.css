@@ -6,6 +6,10 @@
   background-size: 300% 100%;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .backdrop-blur-sm {
     backdrop-filter: blur(8px);

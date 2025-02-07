@@ -1,4 +1,3 @@
-import React from "react";
 import { Brain, Database, Lock } from "lucide-react";
 import HeroButtons from "./Hero/HeroButtons";
 

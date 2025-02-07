@@ -9,14 +9,14 @@ const Navbar = () => {
     ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.5)"]
   );
 
-  const backdropBlur = useTransform(scrollY, [0, 100], [0, 12]);
+  // const backdropBlur = useTransform(scrollY, [0, 100], [0, 12]);
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-20 transition-colors duration-300"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-20 transition-colors duration-300 backdrop-blur-[0.5px]"
       style={{
         backgroundColor,
-        backdropFilter: `blur(${backdropBlur.get()}px)`,
+        // backdropFilter: `blur(${backdropBlur.get()}px)`,
       }}
     >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4">
