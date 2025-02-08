@@ -1,11 +1,12 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { ButtonHTMLAttributes, forwardRef } from "react";
+import { VariantProps, cva } from "class-variance-authority";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { cn } from "../../lib/utils";
+import { Spinner } from "./spinner";
+import { scaleHover } from "../../lib/animations";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -18,6 +19,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        gradient:
+          "bg-gradient-to-r from-purple-400 to-pink-600 text-white hover:opacity-90",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -33,24 +36,70 @@ const buttonVariants = cva(
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
+type ButtonBaseProps = ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonVariantProps = VariantProps<typeof buttonVariants>;
+type ButtonMotionProps = Omit<HTMLMotionProps<"button">, keyof ButtonBaseProps>;
+
+export interface ButtonProps extends ButtonBaseProps, ButtonVariantProps {
+  loading?: boolean;
+  animate?: boolean;
+  loadingText?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      animate = true,
+      loading = false,
+      loadingText = "Loading...",
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const buttonClasses = cn(buttonVariants({ variant, size }), className);
+    const content = loading ? (
+      <div className="flex items-center gap-2">
+        <Spinner size="sm" />
+        {size !== "icon" && <span>{loadingText}</span>}
+      </div>
+    ) : (
+      children
+    );
+
+    if (animate) {
+      return (
+        <motion.button
+          className={buttonClasses}
+          ref={ref}
+          variants={scaleHover}
+          whileHover="hover"
+          whileTap="tap"
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          disabled={loading || props.disabled}
+          {...(props as ButtonMotionProps)}
+        >
+          {content}
+        </motion.button>
+      );
+    }
+
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+      <button
+        className={buttonClasses}
         ref={ref}
+        disabled={loading || props.disabled}
         {...props}
-      />
+      >
+        {content}
+      </button>
     );
   }
 );
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants };

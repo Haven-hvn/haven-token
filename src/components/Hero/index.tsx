@@ -1,49 +1,148 @@
-import React from "react";
-import HeroButtons from "./HeroButtons";
-import { HeroFeatures } from "./HeroFeatures";
-import WaveText from "./WaveText";
-import { Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
+import { Button } from "../ui/button";
+import { Container } from "../ui/container";
+import { Heading } from "../ui/heading";
+import { Section } from "../ui/section";
+import { Text } from "../ui/text";
+import { Card, CardContent } from "../ui/card";
+import { GradientBackground, GridPattern } from "../ui/gradient-background";
+import { heroTextAnim, staggerChildren } from "../../lib/animations";
 
-const Hero = () => {
+const stats = [
+  {
+    label: "Total Value Locked",
+    value: "$10M+",
+    description: "Secured in smart contracts",
+  },
+  {
+    label: "Active Nodes",
+    value: "1,000+",
+    description: "Powering the network",
+  },
+  {
+    label: "Community Members",
+    value: "50,000+",
+    description: "Growing globally",
+  },
+];
+
+export const Hero = () => {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-black via-purple-900 to-black text-white">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-black opacity-70"></div>
-        <img
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80"
-          alt="Vibrant Neon Background"
-          className="w-full h-full object-cover"
-        />
-      </div>
+    <Section
+      className="min-h-[90vh] flex items-center relative overflow-hidden"
+      spacing="none"
+      container="full"
+    >
+      {/* Background Effects */}
+      <GradientBackground
+        variant="primary"
+        intensity="strong"
+        className="opacity-60"
+      />
+      <GridPattern
+        size="lg"
+        opacity="medium"
+        className="mix-blend-soft-light"
+      />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="h-8 w-8 text-purple-400 animate-pulse" />
-            <span className="text-xl text-purple-400 font-semibold">
-              🔥 The Spiciest Web3 Project 🔥
-            </span>
-            <Sparkles className="h-8 w-8 text-purple-400 animate-pulse" />
-          </div>
+      <Container className="relative z-10 py-20">
+        <motion.div
+          className="max-w-4xl mx-auto text-center space-y-8"
+          variants={staggerChildren}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Badge */}
+          <motion.div variants={heroTextAnim}>
+            <Text
+              size="lg"
+              variant="primary"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+            >
+              Introducing Haven Protocol
+              <ChevronRight className="h-4 w-4" />
+            </Text>
+          </motion.div>
 
-          <WaveText
-            text="HAVEN Protocol"
-            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
-          />
-          <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-            Where AI Meets Adult Entertainment 🎵
-          </p>
-          <p className="text-lg md:text-xl mb-12 text-gray-400 max-w-2xl mx-auto animate-bounce">
-            The First NSFW TikTok Clone Powered by Blockchain 🚀
-          </p>
+          {/* Main Heading */}
+          <motion.div variants={heroTextAnim}>
+            <Heading
+              level="h1"
+              color="gradient"
+              align="center"
+              className="max-w-3xl mx-auto"
+            >
+              The Next Generation of{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                Decentralized Intelligence
+              </span>
+            </Heading>
+          </motion.div>
 
-          <HeroButtons />
-        </div>
+          {/* Subtitle */}
+          <motion.div variants={heroTextAnim}>
+            <Text
+              size="xl"
+              variant="muted"
+              className="max-w-2xl mx-auto"
+              align="center"
+            >
+              Experience the future of AI-powered blockchain technology. Haven
+              combines advanced artificial intelligence with secure
+              decentralized infrastructure.
+            </Text>
+          </motion.div>
 
-        <HeroFeatures />
-      </div>
-    </div>
+          {/* Call to Action */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-4"
+            variants={heroTextAnim}
+          >
+            <Button size="lg" variant="gradient">
+              Get Started
+            </Button>
+            <Button size="lg" variant="outline">
+              Read Whitepaper
+            </Button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12"
+            variants={heroTextAnim}
+          >
+            {stats.map((stat) => (
+              <Card
+                key={stat.label}
+                variant="glass"
+                hover="scale"
+                animate={true}
+                className="text-center"
+              >
+                <CardContent className="space-y-2">
+                  <Text
+                    size="2xl"
+                    weight="bold"
+                    variant="gradient"
+                    className="font-clash"
+                  >
+                    {stat.value}
+                  </Text>
+                  <div className="space-y-1">
+                    <Text size="base" weight="medium" className="text-white">
+                      {stat.label}
+                    </Text>
+                    <Text size="sm" variant="muted">
+                      {stat.description}
+                    </Text>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </motion.div>
+        </motion.div>
+      </Container>
+    </Section>
   );
 };
-
-export default Hero;

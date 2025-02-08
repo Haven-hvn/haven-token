@@ -7,6 +7,7 @@ import UseCases from "./components/UseCases";
 import Tokenomics from "./components/Tokenomics";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import JoinUs from "./components/JoinUs";
 // import HeroSection from "./components/Hero/index";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Hero } from "./components/ui/animated-hero";
@@ -22,16 +23,6 @@ function App() {
     wheelMultiplier: 1,
     touchMultiplier: 2,
   });
-
-  // // Function to handle smooth scrolling to sections
-  // const scrollToSection = (sectionId: string) => {
-  //   if (lenis && sectionId) {
-  //     const element = document.querySelector(sectionId);
-  //     if (element instanceof HTMLElement) {
-  //       lenis.scrollTo(element, { offset: -100 }); // Offset to account for fixed header
-  //     }
-  //   }
-  // };
 
   useLayoutEffect(() => {
     // Create scroll-triggered animations for sections
@@ -79,6 +70,7 @@ function App() {
                   <Technology />
                   <UseCases />
                   <Tokenomics />
+                  <JoinUs />
                 </main>
               }
             />

@@ -1,21 +1,103 @@
+@import "tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.bg-300 {
-  background-size: 300% 100%;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-jakarta;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-* {
-  scroll-behavior: smooth;
-}
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 
-html {
-  scroll-behavior: smooth;
+  .heading-1 {
+    @apply font-clash text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl;
+  }
+
+  .heading-2 {
+    @apply font-clash text-3xl font-bold tracking-tight sm:text-4xl;
+  }
+
+  .heading-3 {
+    @apply font-clash text-2xl font-bold tracking-tight sm:text-3xl;
+  }
+
+  .large-text {
+    @apply text-lg sm:text-xl leading-relaxed;
+  }
+
+  .body-text {
+    @apply text-base leading-relaxed;
+  }
+
+  .small-text {
+    @apply text-sm leading-relaxed;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600;
+  }
 }
 
 @layer utilities {
   .backdrop-blur-sm {
     backdrop-filter: blur(8px);
   }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .grid-center {
+    @apply grid place-items-center;
+  }
+
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+/* Animation utilities */
+.bg-300 {
+  background-size: 300% 100%;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+/* Scrollbar styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted));
+  border-radius: 3px;
 }
