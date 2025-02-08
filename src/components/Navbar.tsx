@@ -1,11 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Brain } from "lucide-react";
 
-interface NavbarProps {
-  onSectionClick: (sectionId: string) => void;
-}
-
-const Navbar = ({ onSectionClick }: NavbarProps) => {
+const Navbar = () => {
   const { scrollY } = useScroll();
 
   const backgroundColor = useTransform(
@@ -52,10 +48,10 @@ const Navbar = ({ onSectionClick }: NavbarProps) => {
                 className="text-sm font-medium text-gray-200 hover:text-purple-400 transition-colors cursor-pointer"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onSectionClick(`#${item.toLowerCase()}`);
-                }}
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   onSectionClick(`#${item.toLowerCase()}`);
+                // }}
               >
                 {item}
               </motion.a>

@@ -16,22 +16,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   // Get Lenis instance from smooth scroll hook
-  const lenis = useSmoothScroll({
+  useSmoothScroll({
     duration: 1.2,
     smoothWheel: true,
     wheelMultiplier: 1,
     touchMultiplier: 2,
   });
 
-  // Function to handle smooth scrolling to sections
-  const scrollToSection = (sectionId: string) => {
-    if (lenis && sectionId) {
-      const element = document.querySelector(sectionId);
-      if (element instanceof HTMLElement) {
-        lenis.scrollTo(element, { offset: -100 }); // Offset to account for fixed header
-      }
-    }
-  };
+  // // Function to handle smooth scrolling to sections
+  // const scrollToSection = (sectionId: string) => {
+  //   if (lenis && sectionId) {
+  //     const element = document.querySelector(sectionId);
+  //     if (element instanceof HTMLElement) {
+  //       lenis.scrollTo(element, { offset: -100 }); // Offset to account for fixed header
+  //     }
+  //   }
+  // };
 
   useLayoutEffect(() => {
     // Create scroll-triggered animations for sections
@@ -69,7 +69,7 @@ function App() {
     <Router>
       <div className="relative bg-black text-white">
         <div className="flex flex-col">
-          <Navbar onSectionClick={scrollToSection} />
+          <Navbar />
           <Routes>
             <Route
               path="/"

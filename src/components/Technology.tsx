@@ -1,5 +1,7 @@
 import { memo } from "react";
 import { Server, Shield, Cpu, LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { textVariant } from "../lib/anims";
 
 interface TechCardProps {
   Icon: LucideIcon;
@@ -24,11 +26,17 @@ const TechCard = memo(
     };
 
     return (
-      <div className={`${baseStyles} ${variantStyles[variant]}`}>
+      <motion.div
+        className={`${baseStyles} ${variantStyles[variant]}`}
+        variants={textVariant(0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
         <Icon className="h-12 w-12 text-red-400 mb-4" />
         <h3 className="text-2xl font-semibold text-white mb-3">{title}</h3>
         <p className="text-gray-400 text-lg">{description}</p>
-      </div>
+      </motion.div>
     );
   }
 );
@@ -86,12 +94,18 @@ const Technology = () => {
           className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col"
         >
           <div className="flex gap-4 flex-col">
-            <h2 className="text-5xl md:text-7xl tracking-tight text-center font-semibold text-white mb-4">
+            <motion.h2
+              variants={textVariant(0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-5xl md:text-7xl tracking-tight text-center font-semibold text-white mb-4"
+            >
               Our{" "}
               <span className=" bg-gradient-to-t bg-clip-text text-transparent  from-red-400  to-pink-600">
                 Architecture
               </span>
-            </h2>
+            </motion.h2>
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-gray-400 max-w-2xl text-center mx-auto">
               Built on cutting-edge blockchain and AI technologies to enable
               secure, scalable dataset generation
