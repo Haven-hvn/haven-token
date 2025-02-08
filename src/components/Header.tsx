@@ -8,10 +8,12 @@ const Header = () => {
     <header className="fixed w-full bg-black/50 backdrop-blur z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
-            <Brain className="h-8 w-8 text-purple-500" />
-            <span className="ml-2 text-2xl font-bold text-white">HAVEN</span>
-          </div>
+          <a href="/" className="flex items-center cursor-pointer">
+            <div className="flex items-center">
+              <Brain className="h-8 w-8 text-purple-500" />
+              <span className="ml-2 text-2xl font-bold text-white">HAVEN</span>
+            </div>
+          </a>
 
           <nav className="hidden md:flex space-x-8">
             <a

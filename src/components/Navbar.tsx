@@ -1,6 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Brain } from "lucide-react";
 
-const Navbar = () => {
+interface NavbarProps {
+  onSectionClick: (sectionId: string) => void;
+}
+
+const Navbar = ({ onSectionClick }: NavbarProps) => {
   const { scrollY } = useScroll();
 
   const backgroundColor = useTransform(
@@ -20,13 +25,18 @@ const Navbar = () => {
       }}
     >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="text-2xl font-bold font-clash">HAVEN</div>
-        </motion.div>
+        <a href="/" className="flex items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2"
+          >
+            <Brain className="h-8 w-8 text-red-400" />
+
+            <div className="text-2xl font-bold font-clash">HAVEN</div>
+          </motion.div>
+        </a>
 
         <motion.nav
           className="hidden md:flex items-center space-x-8"
@@ -39,9 +49,13 @@ const Navbar = () => {
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-gray-200 hover:text-purple-400 transition-colors"
+                className="text-sm font-medium text-gray-200 hover:text-purple-400 transition-colors cursor-pointer"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSectionClick(`#${item.toLowerCase()}`);
+                }}
               >
                 {item}
               </motion.a>

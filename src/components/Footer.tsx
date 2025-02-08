@@ -151,9 +151,16 @@ const Footer = () => {
           variants={itemVariants}
           className="border-t border-red-500/10 mt-12 pt-8 text-center"
         >
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Haven. All rights reserved.
-          </p>
+          <div className="space-y-2">
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Haven. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs">
+              <a href="/dmca" className="hover:text-gray-400 transition-colors">
+                DMCA Policy
+              </a>
+            </p>
+          </div>
         </motion.div>
       </motion.div>
 

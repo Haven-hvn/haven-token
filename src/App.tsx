@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Technology from "./components/Technology";
 import UseCases from "./components/UseCases";
 import Tokenomics from "./components/Tokenomics";
@@ -9,17 +10,28 @@ import Navbar from "./components/Navbar";
 // import HeroSection from "./components/Hero/index";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Hero } from "./components/ui/animated-hero";
+import DMCA from "./components/DMCA";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  // Initialize smooth scrolling with custom options
-  useSmoothScroll({
+  // Get Lenis instance from smooth scroll hook
+  const lenis = useSmoothScroll({
     duration: 1.2,
     smoothWheel: true,
     wheelMultiplier: 1,
     touchMultiplier: 2,
   });
+
+  // Function to handle smooth scrolling to sections
+  const scrollToSection = (sectionId: string) => {
+    if (lenis && sectionId) {
+      const element = document.querySelector(sectionId);
+      if (element instanceof HTMLElement) {
+        lenis.scrollTo(element, { offset: -100 }); // Offset to account for fixed header
+      }
+    }
+  };
 
   useLayoutEffect(() => {
     // Create scroll-triggered animations for sections
@@ -54,22 +66,28 @@ function App() {
   }, []);
 
   return (
-    <div className="relative bg-black text-white">
-      <div className="flex flex-col">
-        <Navbar />
-        <main className="relative">
-          {/* <HeroSection /> */}
-          <Hero />
-
-          <Technology />
-
-          <UseCases />
-
-          <Tokenomics />
-        </main>
-        <Footer />
+    <Router>
+      <div className="relative bg-black text-white">
+        <div className="flex flex-col">
+          <Navbar onSectionClick={scrollToSection} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <main className="relative">
+                  <Hero />
+                  <Technology />
+                  <UseCases />
+                  <Tokenomics />
+                </main>
+              }
+            />
+            <Route path="/dmca" element={<DMCA />} />
+          </Routes>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
