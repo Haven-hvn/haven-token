@@ -87,12 +87,9 @@ const SPECIFICATIONS = [
 
 const Technology = () => {
   return (
-    <div className="w-full" id="technology">
+    <section id="technology" className="w-full py-20 lg:py-40">
       <div className="container mx-auto">
-        <section
-          id="technology"
-          className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col"
-        >
+        <div className="flex gap-8 items-center justify-center flex-col">
           <div className="flex gap-4 flex-col">
             <motion.h2
               variants={textVariant(0.2)}
@@ -102,7 +99,7 @@ const Technology = () => {
               className="text-5xl md:text-7xl tracking-tight text-center font-semibold text-white mb-4"
             >
               Our{" "}
-              <span className=" bg-gradient-to-t bg-clip-text text-transparent  from-red-400  to-pink-600">
+              <span className="bg-gradient-to-t bg-clip-text text-transparent from-red-400 to-pink-600">
                 Architecture
               </span>
             </motion.h2>
@@ -128,9 +125,9 @@ const Technology = () => {
               ))}
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -67,12 +67,16 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline">
-              Join the Community <UsersRoundIcon className="w-4 h-4" />
-            </Button>
-            <Button size="lg" className="gap-4">
-              Get Started Now <MoveRight className="w-4 h-4" />
-            </Button>
+            <a href=" #join-us">
+              <Button size="lg" className="gap-4" variant="outline">
+                Join the Community <UsersRoundIcon className="w-4 h-4" />
+              </Button>
+            </a>
+            <a href="https://havenapp.orbiter.website/" target="_blank">
+              <Button size="lg" className="gap-4">
+                Get Started Now <MoveRight className="w-4 h-4" />
+              </Button>
+            </a>
           </div>
         </div>
       </div>

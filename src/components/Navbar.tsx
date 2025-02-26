@@ -14,9 +14,9 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { name: "Features", href: "#features" },
-  { name: "Technology", href: "#technology" },
-  { name: "Tokenomics", href: "#tokenomics" },
+  { name: "Technology", href: "/#technology" },
+  { name: "Tokenomics", href: "/#innovation" },
+  { name: "Join Us", href: "/#join-us" },
   { name: "Whitepaper", href: "/whitepaper", isExternal: true },
 ];
 
