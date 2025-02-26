@@ -22,19 +22,43 @@
 ### Visual Components
 
 - `Spinner`: Loading indicator
-- `GradientBackground`: Animated gradient backgrounds
+- `GradientBackground`: Animated gradient backgrounds with retro blur effects
+- `RetroBlur`: Component for creating retro-style blur effects with noise
+- `NoiseTexture`: Overlay component for adding grain/noise effects
 - `GridPattern`: Decorative grid patterns
 
 ## Design Tokens
 
 ### Colors
 
+- Primary Gradient: `from-red-400 to-pink-600`
+- Background Blur: `backdrop-blur-[100px]`
+- Noise Opacity: `opacity-[0.15]`
+- Glass Effect: `bg-white/10 backdrop-blur-lg`
 - Primary: Used for main brand elements
 - Secondary: Used for supporting elements
 - Accent: Used for highlights and attention-grabbing elements
 - Muted: Used for subtle backgrounds and disabled states
 - Background: Base background colors
 - Foreground: Base text colors
+
+### Blur & Noise Effects
+
+- Retro Blur:
+  ```css
+  .retro-blur {
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+  }
+  ```
+- Noise Texture:
+  ```css
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+  }
+  ```
 
 ### Typography
 
@@ -67,6 +91,35 @@
 
 ### Animations
 
+- Text Transitions:
+  ```typescript
+  const textVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+  ```
+- Title Change Animation:
+  ```typescript
+  const titleChangeVariants = {
+    initial: { opacity: 0, y: 50 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -50,
+    },
+  };
+  ```
 - Transitions:
   - Default: all 0.2s cubic-bezier(0.4, 0, 0.2, 1)
   - Colors: color 0.2s cubic-bezier(0.4, 0, 0.2, 1)

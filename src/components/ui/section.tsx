@@ -33,7 +33,7 @@ const sectionVariants = cva("relative w-full", {
       default: "bg-background",
       muted: "bg-muted",
       primary: "bg-primary text-primary-foreground",
-      gradient: "bg-gradient-to-b from-purple-400/10 to-pink-600/10",
+      gradient: "bg-gradient-primary",
     },
   },
   defaultVariants: {

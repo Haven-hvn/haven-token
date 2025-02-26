@@ -11,8 +11,10 @@ import JoinUs from "./components/JoinUs";
 // import HeroSection from "./components/Hero/index";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Hero } from "./components/ui/animated-hero";
+// import { Hero } from "./components/Hero";
 import DMCA from "./components/DMCA";
 import { Whitepaper } from "./components/Whitepaper";
+import { DesignSystemDemo } from "./components/ui/design-system-demo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,6 +79,7 @@ function App() {
             />
             <Route path="/dmca" element={<DMCA />} />
             <Route path="/whitepaper" element={<Whitepaper />} />
+            <Route path="/design-system" element={<DesignSystemDemo />} />
           </Routes>
           <Footer />
         </div>

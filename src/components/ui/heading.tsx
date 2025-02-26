@@ -7,9 +7,9 @@ import { heroTextAnim } from "../../lib/animations";
 const headingVariants = cva("tracking-tight font-clash", {
   variants: {
     level: {
-      h1: "text-4xl font-bold lg:text-5xl xl:text-6xl",
-      h2: "text-3xl font-bold lg:text-4xl",
-      h3: "text-2xl font-bold lg:text-3xl",
+      h1: "text-4xl font-black lg:text-5xl xl:text-7xl",
+      h2: "text-3xl font-bold lg:text-4xl xl:text-5xl",
+      h3: "text-2xl font-bold lg:text-3xl xl:text-4xl",
       h4: "text-xl font-semibold lg:text-2xl",
       h5: "text-lg font-semibold",
       h6: "text-base font-semibold",
@@ -18,8 +18,7 @@ const headingVariants = cva("tracking-tight font-clash", {
       default: "text-foreground",
       muted: "text-muted-foreground",
       primary: "text-primary",
-      gradient:
-        "bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600",
+      gradient: "bg-gradient-primary bg-clip-text text-transparent",
     },
     align: {
       left: "text-left",

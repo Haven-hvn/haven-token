@@ -1,29 +1,40 @@
 :root {
   /* Colors */
-  --background: 0 0% 0%;
+  --background: 0 0% 11%;
   --foreground: 0 0% 100%;
-  --primary: 336 83% 51%;
+  --primary: 0 84% 60%; /* Red primary color */
   --primary-foreground: 0 0% 100%;
   --secondary: 240 10% 3.9%;
   --secondary-foreground: 0 0% 98%;
   --muted: 240 4% 16%;
   --muted-foreground: 240 5% 64.9%;
-  --accent: 0 91% 71%;
+  --accent: 330 81% 60%; /* Pink accent color */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   --border: 240 4% 16%;
   --input: 240 4% 16%;
-  --ring: 336 83% 51%;
-  --brand: 336 83% 51%;
+  --ring: 0 84% 60%;
+  --brand: 0 84% 60%;
   --brand-foreground: 0 0% 100%;
-  --chart-1: 336 83% 51%;
-  --chart-2: 0 91% 71%;
-  --chart-3: 217 91% 60%;
-  --chart-4: 142 71% 45%;
-  --chart-5: 47 95% 57%;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(
+    to right,
+    hsl(0 84% 60%),
+    hsl(330 81% 60%)
+  );
+  --gradient-glow: radial-gradient(
+    circle,
+    rgba(239, 68, 68, 0.2) 0%,
+    rgba(236, 72, 153, 0.2) 50%,
+    rgba(28, 28, 28, 0) 100%
+  );
 
   /* Typography */
+  --font-family-display: "ClashDisplay", system-ui, sans-serif;
+  --font-family-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -32,6 +43,17 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem; /* For hero text */
+  --font-size-8xl: 6rem; /* For dramatic headlines */
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900; /* For extra bold hero text */
 
   /* Spacing */
   --spacing-0: 0;
@@ -45,6 +67,9 @@
   --spacing-10: 2.5rem;
   --spacing-12: 3rem;
   --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem; /* For dramatic vertical spacing */
 
   /* Border Radius */
   --radius: 0.5rem;
@@ -54,6 +79,8 @@
   --transition-colors: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-transform: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-opacity: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -61,4 +88,21 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgba(255, 68, 0, 0.2); /* For glowing effects */
+}
+
+/* Utility Classes */
+.retro-blur {
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary);
 }

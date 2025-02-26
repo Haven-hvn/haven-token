@@ -6,6 +6,7 @@ import { IconButton } from "./ui/icon-button";
 import { NavLink } from "./ui/nav-link";
 import { fadeInDown, mobileMenuAnim, staggerChildren } from "../lib/animations";
 import { cn } from "../lib/utils";
+import { RetroBlur } from "./ui/retro-blur";
 
 type NavItem = {
   name: string;
@@ -46,12 +47,13 @@ export const Navbar = ({ className }: NavbarProps) => {
   return (
     <motion.header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300 backdrop-blur-[0.5px]",
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300 backdrop-blur-[30px]",
         className
       )}
       style={{ backgroundColor }}
       role="banner"
     >
+      <RetroBlur />
       <div className="container max-w-7xl mx-auto h-20 flex items-center justify-between">
         {/* Logo */}
         <a

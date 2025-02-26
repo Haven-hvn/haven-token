@@ -2,7 +2,6 @@ import { ElementType, HTMLAttributes, forwardRef, ReactNode } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "../../lib/utils";
-import { fadeInUp } from "../../lib/animations";
 
 const textVariants = cva("", {
   variants: {
@@ -10,8 +9,7 @@ const textVariants = cva("", {
       default: "text-foreground",
       muted: "text-muted-foreground",
       primary: "text-primary",
-      gradient:
-        "bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600",
+      gradient: "bg-gradient-primary bg-clip-text text-transparent",
     },
     size: {
       xs: "text-xs",
@@ -98,9 +96,14 @@ const Text = forwardRef<HTMLElement, TextProps>((props, ref) => {
     <MotionComponent
       ref={ref}
       className={textClasses}
-      variants={fadeInUp}
-      initial="hidden"
-      animate="visible"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        mass: 1,
+      }}
       {...(rest as HTMLMotionProps<"div">)}
     >
       {children}

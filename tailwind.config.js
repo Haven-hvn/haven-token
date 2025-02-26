@@ -5,7 +5,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        clash: ["ClashDisplay", "sans-serif"],
+        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+        clash: ["Clash Display", "sans-serif"],
         jakarta: ["Plus Jakarta Sans", "sans-serif"],
       },
       keyframes: {

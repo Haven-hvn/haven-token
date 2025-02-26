@@ -9,11 +9,10 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "bg-card text-card-foreground",
-        glass: "bg-white/5 backdrop-blur-sm border border-white/10",
+        glass: "bg-white/10 backdrop-blur-lg border border-white/10",
         outline: "border bg-background",
         ghost: "hover:bg-accent/5",
-        gradient:
-          "bg-gradient-to-b from-primary/10 to-primary/5 border border-primary/20",
+        gradient: "bg-gradient-primary text-white/90 border border-white/10",
       },
       hover: {
         none: "",
@@ -86,12 +85,14 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     }
 
     const motionProps: HTMLMotionProps<"div"> = {
-      initial: { opacity: 0, y: 20 },
+      initial: { opacity: 0, y: 50 },
       whileInView: { opacity: 1, y: 0 },
       viewport: { once: true, margin: "-50px" },
       transition: {
-        duration: 0.3,
-        ease: "easeOut",
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        mass: 1,
       },
       ...(props as CardMotionProps),
     };
@@ -125,7 +126,7 @@ interface CardTitleProps {
 export const CardTitle = ({ children, className }: CardTitleProps) => (
   <h3
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
+      "text-lg font-clash font-semibold leading-none tracking-tight",
       className
     )}
   >
@@ -143,7 +144,9 @@ export const CardDescription = ({
   children,
   className,
 }: CardDescriptionProps) => (
-  <p className={cn("text-sm text-muted-foreground", className)}>{children}</p>
+  <p className={cn("text-sm font-jakarta text-muted-foreground", className)}>
+    {children}
+  </p>
 );
 
 // Card Content Component
