@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Technology from "./components/Technology";
 import UseCases from "./components/UseCases";
-import Tokenomics from "./components/Tokenomics";
+import Innovation from "./components/Innovation";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import JoinUs from "./components/JoinUs";
@@ -12,6 +12,7 @@ import JoinUs from "./components/JoinUs";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Hero } from "./components/ui/animated-hero";
 import DMCA from "./components/DMCA";
+import { Whitepaper } from "./components/Whitepaper";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +30,7 @@ function App() {
     const sections = [
       ".technology-section",
       ".use-cases-section",
-      ".tokenomics-section",
+      ".innovation-section",
     ];
 
     sections.forEach((section) => {
@@ -69,12 +70,13 @@ function App() {
                   <Hero />
                   <Technology />
                   <UseCases />
-                  <Tokenomics />
+                  <Innovation />
                   <JoinUs />
                 </main>
               }
             />
             <Route path="/dmca" element={<DMCA />} />
+            <Route path="/whitepaper" element={<Whitepaper />} />
           </Routes>
           <Footer />
         </div>

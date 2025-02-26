@@ -55,7 +55,7 @@ function ParticleField() {
     >
       <PointMaterial
         transparent
-        color="#4c1d95" // Darker purple
+        color="#7c3aed" // Vibrant purple
         size={hovered ? 0.08 : 0.05}
         sizeAttenuation={true}
         depthWrite={false}
@@ -79,13 +79,13 @@ export default function DynamicBackground() {
     <div className="absolute w-full h-full inset-0 z-0">
       <ErrorBoundary FallbackComponent={Fallback}>
         <Canvas camera={{ position: [0, 0, 1] }}>
-          <color attach="background" args={["#0a0518"]} />{" "}
-          {/* Dark background with slight purple tint */}
+          <color attach="background" args={["#0f0522"]} />{" "}
+          {/* Dark purple background */}
           <FluidGradient />
           <ParticleField />
         </Canvas>
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/10 via-purple-900/10 to-blue-900/10 backdrop-blur-[8px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-violet-900/20 to-indigo-900/20 backdrop-blur-[8px]" />
         </div>
       </ErrorBoundary>
     </div>

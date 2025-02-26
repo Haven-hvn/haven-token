@@ -1,17 +1,24 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Brain, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { IconButton } from "./ui/icon-button";
 import { NavLink } from "./ui/nav-link";
 import { fadeInDown, mobileMenuAnim, staggerChildren } from "../lib/animations";
 import { cn } from "../lib/utils";
 
-const navItems = [
+type NavItem = {
+  name: string;
+  href: string;
+  isExternal?: boolean;
+};
+
+const navItems: NavItem[] = [
   { name: "Features", href: "#features" },
   { name: "Technology", href: "#technology" },
   { name: "Tokenomics", href: "#tokenomics" },
-  { name: "Whitepaper", href: "#whitepaper" },
-] as const;
+  { name: "Whitepaper", href: "/whitepaper", isExternal: true },
+];
 
 interface NavbarProps {
   className?: string;
@@ -72,11 +79,21 @@ export const Navbar = ({ className }: NavbarProps) => {
           role="navigation"
           aria-label="Main navigation"
         >
-          {navItems.map((item) => (
-            <NavLink key={item.name} href={item.href}>
-              {item.name}
-            </NavLink>
-          ))}
+          {navItems.map((item) =>
+            item.isExternal ? (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-gray-300 hover:text-white transition-colors duration-200"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <NavLink key={item.name} href={item.href}>
+                {item.name}
+              </NavLink>
+            )
+          )}
         </motion.nav>
 
         {/* Mobile Menu Button */}
@@ -106,15 +123,26 @@ export const Navbar = ({ className }: NavbarProps) => {
         variants={mobileMenuAnim}
       >
         <div className="container py-4 flex flex-col space-y-4 bg-background/80 backdrop-blur-sm">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.name}
-            </NavLink>
-          ))}
+          {navItems.map((item) =>
+            item.isExternal ? (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-gray-300 hover:text-white transition-colors duration-200 px-4 py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <NavLink
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            )
+          )}
         </div>
       </motion.nav>
 

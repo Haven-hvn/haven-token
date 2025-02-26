@@ -2,16 +2,6 @@ import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { extend, useFrame } from "@react-three/fiber";
 
-// Define our uniforms type
-type FluidMaterialUniforms = {
-  uTime: { value: number };
-  uMouse: { value: THREE.Vector2 };
-  uResolution: { value: THREE.Vector2 };
-  uColorA: { value: THREE.Color };
-  uColorB: { value: THREE.Color };
-  uColorC: { value: THREE.Color };
-};
-
 // Create a custom material class
 class CustomFluidGradientMaterial extends THREE.ShaderMaterial {
   constructor() {
@@ -20,9 +10,9 @@ class CustomFluidGradientMaterial extends THREE.ShaderMaterial {
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uResolution: { value: new THREE.Vector2(0, 0) },
-        uColorA: { value: new THREE.Color("#4f46e5") },
-        uColorB: { value: new THREE.Color("#8b5cf6") },
-        uColorC: { value: new THREE.Color("#6366f1") },
+        uColorA: { value: new THREE.Color("#4c1d95") }, // Deep purple
+        uColorB: { value: new THREE.Color("#6d28d9") }, // Royal purple
+        uColorC: { value: new THREE.Color("#7c3aed") }, // Vibrant purple
       },
       vertexShader: `
         varying vec2 vUv;

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const containerVariants = {
@@ -58,13 +59,23 @@ const Footer = () => {
                     whileHover="hover"
                     variants={linkVariants}
                   >
-                    <a
-                      href="#"
-                      className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-200"
-                    >
-                      <span className="h-px w-4 bg-gradient-to-r from-red-400 to-pink-600 transform origin-left group-hover:w-5 transition-all duration-200"></span>
-                      <span>{item}</span>
-                    </a>
+                    {item === "Whitepaper" ? (
+                      <Link
+                        to="/whitepaper"
+                        className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-200"
+                      >
+                        <span className="h-px w-4 bg-gradient-to-r from-red-400 to-pink-600 transform origin-left group-hover:w-5 transition-all duration-200"></span>
+                        <span>{item}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        className="text-gray-300 hover:text-white flex items-center space-x-2 text-sm group transition-all duration-200"
+                      >
+                        <span className="h-px w-4 bg-gradient-to-r from-red-400 to-pink-600 transform origin-left group-hover:w-5 transition-all duration-200"></span>
+                        <span>{item}</span>
+                      </a>
+                    )}
                   </motion.li>
                 )
               )}
