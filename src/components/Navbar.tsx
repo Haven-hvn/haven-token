@@ -86,12 +86,12 @@ export const Navbar = ({ className }: NavbarProps) => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                className="text-gray-300 font-mono hover:text-white transition-colors  text-sm font-medium duration-200"
               >
                 {item.name}
               </Link>
             ) : (
-              <NavLink key={item.name} href={item.href}>
+              <NavLink className="font-mono" key={item.name} href={item.href}>
                 {item.name}
               </NavLink>
             )

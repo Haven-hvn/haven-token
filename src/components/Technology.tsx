@@ -16,6 +16,7 @@ import { NoiseTexture } from "./ui/noise-texture";
 import { Text } from "./ui/text";
 import { textVariant } from "../lib/anims";
 import { motion } from "framer-motion";
+import { RetroShapesAlt } from "./ui/retro-shapes-alt";
 
 interface TechCardProps {
   Icon: LucideIcon;
@@ -134,7 +135,7 @@ const Technology = () => {
       spacing="xl"
       className="relative overflow-hidden isolate"
     >
-      <RetroShapes className="opacity-70 -z-10" />
+      <RetroShapesAlt className=" -z-10" />
       <RetroBlur className="absolute inset-0 opacity-30 -z-20" />
       <NoiseTexture className="absolute inset-0 opacity-10 -z-30" />
 

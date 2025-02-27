@@ -130,7 +130,7 @@ export default function DynamicBackground() {
       <ErrorBoundary FallbackComponent={Fallback}>
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
           <color attach="background" args={["#1C1C1C"]} />
-          <fog attach="fog" args={["#1C1C1C", 5, 15]} />
+          {/* <fog attach="fog" args={["#1C1C1C", 5, 15]} /> */}
 
           <LightBeam />
           {/* <AtmosphericParticles /> */}

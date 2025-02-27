@@ -1,35 +1,30 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { textVariant } from "../lib/anims";
 import CommunityBar from "./CommunityBar";
 import { Linkedin, Twitter, MessageSquare, MessagesSquare } from "lucide-react";
+import { Heading } from "./ui/heading";
+import { Text } from "./ui/text";
 import { Section } from "./ui/section";
 import { Container } from "./ui/container";
 
 function JoinUs() {
   return (
     <div id="join-us">
-      <Section className="mt-56">
+      <Section className="">
         <Container>
-          <div className="flex gap-4 flex-col mb-12">
-            <motion.h2
-              variants={textVariant(0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-5xl md:text-7xl tracking-tight text-center font-semibold  text-white mb-2"
-            >
-              Get Access to our {""}
-              <span className=" bg-gradient-to-t bg-clip-text text-transparent  from-red-400  to-pink-600">
-                Exclusive
-              </span>{" "}
-              {""}
-              Community
-            </motion.h2>
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-gray-400 max-w-2xl text-center mx-auto">
-              The HAVEN token ($HVN) powers our ecosystem through sophisticated
-              staking and reward mechanisms
-            </p>
+          <div className="flex gap-4 flex-col mb-16">
+            <div className="text-center">
+              <Heading className="tracking-tight text-center mb-4">
+                Get Access to our {""}
+                <span className=" bg-gradient-to-t bg-clip-text text-transparent  from-red-400  to-pink-600">
+                  Exclusive
+                </span>{" "}
+                {""}
+                Community
+              </Heading>
+              <Text className="text-lg md:text-xl  font-mono text-center text-gray-400 max-w-2xl  mx-auto">
+                Transforming multiple industries through advanced AI dataset
+                generation
+              </Text>
+            </div>
           </div>
 
           <div className="flex w-full justify-center flex-wrap mt-16">

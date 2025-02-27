@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
 
-export const RetroShapes = memo(
+export const RetroShapesAlt = memo(
   ({ className = "" }: { className?: string }) => {
     return (
       <div
@@ -19,7 +19,7 @@ export const RetroShapes = memo(
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -left-32 -top-32 w-[500px] h-[500px] bg-pink-400/30 rounded-full blur-[100px]"
+          className="absolute -right-32 -top-32 w-[500px] h-[500px] bg-red-400/30 rounded-full blur-[100px]"
         />
         <motion.div
           initial={{ scale: 0.8, opacity: 0.3 }}
@@ -33,7 +33,7 @@ export const RetroShapes = memo(
             ease: "linear",
             delay: 1,
           }}
-          className="absolute -right-32 -bottom-32 w-[500px] h-[500px] bg-red-400/30 rounded-full blur-[100px]"
+          className="absolute -left-32 -bottom-32 w-[500px] h-[500px] bg-pink-400/30 rounded-full blur-[100px]"
         />
 
         {/* Grid lines */}
@@ -90,4 +90,4 @@ export const RetroShapes = memo(
   }
 );
 
-RetroShapes.displayName = "RetroShapes";
+RetroShapesAlt.displayName = "RetroShapes";
