@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Server, Shield, Cpu, LucideIcon } from "lucide-react";
 import { Section } from "./ui/section";
+import { RetroShapes } from "./ui/retro-shapes";
 import {
   Card,
   CardContent,
@@ -15,7 +16,6 @@ import { NoiseTexture } from "./ui/noise-texture";
 import { Text } from "./ui/text";
 import { textVariant } from "../lib/anims";
 import { motion } from "framer-motion";
-import { heroTextAnim } from "../lib/animations";
 
 interface TechCardProps {
   Icon: LucideIcon;
@@ -46,7 +46,7 @@ const TechCard = memo(({ Icon, title, description }: TechCardProps) => (
     variant="glass"
     hover="glow"
     animate={false}
-    className="relative overflow-hidden"
+    className="relative overflow-hidden "
   >
     <RetroBlur className="absolute inset-0 opacity-50" />
     <NoiseTexture className="absolute inset-0 opacity-10" />
@@ -74,7 +74,7 @@ const Specification = memo(({ title, formula }: SpecificationProps) => (
     animate={false}
     className="relative overflow-hidden"
   >
-    <RetroBlur className="absolute inset-0 opacity-30" />
+    <RetroBlur className="absolute inset-0 opacity-10" />
     <NoiseTexture className="absolute inset-0 opacity-10" />
     <motion.div
       variants={cardVariant}
@@ -132,11 +132,11 @@ const Technology = () => {
       size="xl"
       align="center"
       spacing="xl"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden isolate"
     >
-      {/* <GridPattern className="absolute inset-0 opacity-5" size={32} /> */}
-      {/* <RetroBlur className="absolute inset-0 opacity-30" /> */}
-      {/* <NoiseTexture className="absolute inset-0 opacity-10" /> */}
+      <RetroShapes className="opacity-70 -z-10" />
+      <RetroBlur className="absolute inset-0 opacity-30 -z-20" />
+      <NoiseTexture className="absolute inset-0 opacity-10 -z-30" />
 
       <motion.div
         className="relative flex gap-8 items-center justify-center flex-col"
