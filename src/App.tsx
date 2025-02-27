@@ -1,61 +1,83 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, lazy, Suspense } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Technology from "./components/Technology";
-import UseCases from "./components/UseCases";
-import Innovation from "./components/Innovation";
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import JoinUs from "./components/JoinUs";
-// import HeroSection from "./components/Hero/index";
-import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Hero } from "./components/ui/animated-hero";
-// import { Hero } from "./components/Hero";
-import DMCA from "./components/DMCA";
-import { Whitepaper } from "./components/Whitepaper";
-import { DesignSystemDemo } from "./components/ui/design-system-demo";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
+import { debounce } from "./lib/utils";
+
+// Lazy load non-critical components
+const Technology = lazy(() => import("./components/Technology"));
+const UseCases = lazy(() => import("./components/UseCases"));
+const Innovation = lazy(() => import("./components/Innovation"));
+const Footer = lazy(() => import("./components/Footer"));
+const JoinUs = lazy(() => import("./components/JoinUs"));
+const DMCA = lazy(() => import("./components/DMCA"));
+const Whitepaper = lazy(() => import("./components/Whitepaper"));
+const DesignSystemDemo = lazy(
+  () => import("./components/ui/design-system-demo")
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="min-h-[200px] flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-white"></div>
+  </div>
+);
+
 function App() {
-  // Get Lenis instance from smooth scroll hook
   useSmoothScroll({
     duration: 1.2,
     smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 2,
+    wheelMultiplier: 0.8, // Reduced from 1 for smoother scrolling
+    touchMultiplier: 1.5, // Adjusted from 2 for better mobile experience
   });
 
   useLayoutEffect(() => {
-    // Create scroll-triggered animations for sections
-    const sections = [
-      ".technology-section",
-      ".use-cases-section",
-      ".innovation-section",
-    ];
+    const setupScrollAnimations = () => {
+      const sections = [
+        ".technology-section",
+        ".use-cases-section",
+        ".innovation-section",
+      ];
 
-    sections.forEach((section) => {
-      const elements = document.querySelectorAll(`${section} > *`);
+      sections.forEach((section) => {
+        const elements = document.querySelectorAll(`${section} > *`);
 
-      gsap.from(elements, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          end: "top 30%",
-          toggleActions: "play none none reverse",
-        },
+        if (elements.length === 0) return; // Skip if no elements found
+
+        gsap.set(elements, { opacity: 0, y: 50 }); // Set initial state
+
+        gsap.from(elements, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8, // Reduced from 1
+          stagger: 0.15, // Reduced from 0.2
+          ease: "power2.out", // Changed from power3 for better performance
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            end: "top 35%",
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+        });
       });
-    });
+    };
 
+    // Debounce scroll animation setup
+    const debouncedSetup = debounce(setupScrollAnimations, 100);
+    debouncedSetup();
+
+    // Cleanup function
     return () => {
-      // Cleanup scroll triggers on unmount
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => {
+        trigger.kill(true); // true parameter ensures complete cleanup
+      });
+      gsap.killTweensOf("*"); // Kill all tweens
     };
   }, []);
 
@@ -70,18 +92,43 @@ function App() {
               element={
                 <main className="relative">
                   <Hero />
-                  <Technology />
-                  <UseCases />
-                  <Innovation />
-                  <JoinUs />
+                  <Suspense fallback={<LoadingFallback />}>
+                    <Technology />
+                    <UseCases />
+                    <Innovation />
+                    <JoinUs />
+                  </Suspense>
                 </main>
               }
             />
-            <Route path="/dmca" element={<DMCA />} />
-            <Route path="/whitepaper" element={<Whitepaper />} />
-            <Route path="/design-system" element={<DesignSystemDemo />} />
+            <Route
+              path="/dmca"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <DMCA />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/whitepaper"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <Whitepaper />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/design-system"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <DesignSystemDemo />
+                </Suspense>
+              }
+            />
           </Routes>
-          <Footer />
+          <Suspense fallback={<LoadingFallback />}>
+            <Footer />
+          </Suspense>
         </div>
       </div>
     </Router>

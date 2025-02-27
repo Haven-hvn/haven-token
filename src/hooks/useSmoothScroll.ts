@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,6 +29,15 @@ export const scrollTo = (
 
 export const useSmoothScroll = (options: UseSmoothScrollOptions = {}) => {
   const lenisRef = useRef<Lenis | null>(null);
+  const rafIdRef = useRef<number>();
+
+  // Memoize the RAF callback to prevent unnecessary re-renders
+  const rafCallback = useCallback((time: number) => {
+    if (lenisRef.current) {
+      lenisRef.current.raf(time * 1000);
+      rafIdRef.current = requestAnimationFrame(rafCallback);
+    }
+  }, []);
 
   useEffect(() => {
     if (!lenisInstance) {
@@ -48,16 +57,19 @@ export const useSmoothScroll = (options: UseSmoothScrollOptions = {}) => {
       lenisRef.current = lenis;
       lenisInstance = lenis;
 
-      // GSAP ScrollTrigger integration
-      const rafCallback = (time: number) => {
-        lenis.raf(time * 1000);
-      };
+      // Use requestAnimationFrame instead of gsap ticker for better performance
+      rafIdRef.current = requestAnimationFrame(rafCallback);
 
-      gsap.ticker.add(rafCallback);
+      // Update ScrollTrigger on Lenis scroll
+      lenis.on("scroll", ScrollTrigger.update);
+
+      // Initial ScrollTrigger refresh
       ScrollTrigger.refresh();
 
       return () => {
-        gsap.ticker.remove(rafCallback);
+        if (rafIdRef.current) {
+          cancelAnimationFrame(rafIdRef.current);
+        }
         if (lenisRef.current) {
           lenisRef.current.destroy();
           lenisRef.current = null;
@@ -65,7 +77,7 @@ export const useSmoothScroll = (options: UseSmoothScrollOptions = {}) => {
         }
       };
     }
-  }, [options]);
+  }, [options, rafCallback]);
 
   return lenisInstance;
 };

@@ -56,4 +56,5 @@ function DesignSystemDemo() {
   );
 }
 
-export { DesignSystemDemo };
+// Add default export for lazy loading
+export default DesignSystemDemo;
