@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { memo, useRef } from "react";
 import { Video, Shield, Bot, Eye } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { Section } from "./ui/section";
@@ -8,7 +8,7 @@ import { Text } from "./ui/text";
 import { Card } from "./ui/card";
 import { RetroShapes } from "./ui/retro-shapes";
 
-const useCases = [
+const USE_CASES = [
   {
     icon: Video,
     title: "Enhanced Video Understanding",
@@ -33,13 +33,10 @@ const useCases = [
     description:
       "Creating meticulously curated datasets with robust governance frameworks for ethical AI advancement",
   },
-];
+] as const;
 
-const UseCases = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
+const ANIMATION_CONFIG = {
+  container: {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -48,9 +45,8 @@ const UseCases = () => {
         delayChildren: 0.3,
       },
     },
-  };
-
-  const itemVariants = {
+  },
+  item: {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
@@ -61,7 +57,42 @@ const UseCases = () => {
         damping: 15,
       },
     },
-  };
+  },
+} as const;
+
+interface UseCaseCardProps {
+  icon: (typeof USE_CASES)[number]["icon"];
+  title: string;
+  description: string;
+}
+
+const UseCaseCard = memo(
+  ({ icon: Icon, title, description }: UseCaseCardProps) => (
+    <motion.div
+      variants={ANIMATION_CONFIG.item}
+      whileHover={{ scale: 1.02 }}
+      className="h-full"
+    >
+      <Card
+        variant="glass"
+        className="border border-red-800/20 bg-gradient-to-br from-red-900/20 to-black/50 p-8 backdrop-blur-lg h-full
+                transition-colors duration-300 hover:border-red-600/30 hover:from-red-900/30 hover:to-black/60"
+      >
+        <Icon className="h-12 w-12 text-red-400 mb-4" />
+        <Heading level="h3" className="text-xl mb-3">
+          {title}
+        </Heading>
+        <Text className="text-gray-400">{description}</Text>
+      </Card>
+    </motion.div>
+  )
+);
+
+UseCaseCard.displayName = "UseCaseCard";
+
+const UseCases = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <Section
@@ -73,7 +104,7 @@ const UseCases = () => {
       <RetroShapes className="z-0 opacity-100" />
       <Container className="relative z-10" ref={ref}>
         <motion.div
-          variants={containerVariants}
+          variants={ANIMATION_CONFIG.container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
           className="flex gap-4 flex-col mb-16"
@@ -81,7 +112,7 @@ const UseCases = () => {
           <div className="text-center">
             <Heading className="tracking-tight mb-4">
               Use{" "}
-              <span className="bg-gradient-to-b bg-clip-text text-transparent from-red-400 to-pink-500 ">
+              <span className="bg-gradient-to-b bg-clip-text text-transparent from-red-400 to-pink-500">
                 Cases
               </span>
             </Heading>
@@ -93,30 +124,13 @@ const UseCases = () => {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={ANIMATION_CONFIG.container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {useCases.map((useCase) => (
-            <motion.div
-              key={useCase.title}
-              variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-              className="h-full"
-            >
-              <Card
-                variant="glass"
-                className="border border-red-800/20 bg-gradient-to-br from-red-900/20 to-black/50 p-8 backdrop-blur-lg h-full
-                          transition-colors duration-300 hover:border-red-600/30 hover:from-red-900/30 hover:to-black/60"
-              >
-                <useCase.icon className="h-12 w-12 text-red-400 mb-4" />
-                <Heading level="h3" className="text-xl mb-3">
-                  {useCase.title}
-                </Heading>
-                <Text className="text-gray-400">{useCase.description}</Text>
-              </Card>
-            </motion.div>
+          {USE_CASES.map((useCase) => (
+            <UseCaseCard key={useCase.title} {...useCase} />
           ))}
         </motion.div>
       </Container>
@@ -124,4 +138,4 @@ const UseCases = () => {
   );
 };
 
-export default UseCases;
+export default memo(UseCases);
