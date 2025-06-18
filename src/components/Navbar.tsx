@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Brain, Menu } from "lucide-react";
+import { Video, Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "./ui/icon-button";
@@ -16,9 +16,9 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: "Technology", href: "/#technology" },
-  { name: "Tokenomics", href: "/#innovation" },
+  { name: "How It Works", href: "/#innovation" },
   { name: "Join Us", href: "/#join-us" },
-  { name: "Whitepaper", href: "/whitepaper", isExternal: true },
+  { name: "Documentation", href: "/whitepaper", isExternal: true },
 ];
 
 interface NavbarProps {
@@ -59,7 +59,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         <a
           href="/"
           className="flex items-center focus-ring rounded-md px-2 py-1"
-          aria-label="Haven - Home"
+          aria-label="Sinbox - Home"
         >
           <motion.div
             variants={fadeInDown}
@@ -67,8 +67,8 @@ export const Navbar = ({ className }: NavbarProps) => {
             animate="visible"
             className="flex items-center gap-2"
           >
-            <Brain className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold font-clash">HAVEN</span>
+            <Video className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-bold font-clash">SINBOX</span>
           </motion.div>
         </a>
 

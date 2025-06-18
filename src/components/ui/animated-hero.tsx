@@ -19,11 +19,10 @@ const BUTTONS = [
     delay: 0.4,
   },
   {
-    href: "https://havenapp.orbiter.website",
-    text: "Get Started Now",
+    href: "#how-it-works",
+    text: "Start Classifying",
     className: "text-white bg-primary/30 hover:bg-primary/50",
     delay: 0.5,
-    target: "_blank" as const,
   },
 ];
 
@@ -31,7 +30,7 @@ function Hero() {
   const [titleIndex, setTitleIndex] = useState(0);
 
   const titles = useMemo(
-    () => ["Revolutionary", "User-Powered", "Limitless", "HAVEN"],
+    () => ["Goon to Earn", "Video Intelligence", "Community-Powered", "SINBOX"],
     []
   );
 
@@ -74,7 +73,7 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...ANIMATION_CONFIG.fade }}
               >
-                The Future of Content is
+                The Future of Video is
                 <div className="relative flex w-full justify-center overflow-hidden text-center h-[1.2em] mt-2">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -97,10 +96,9 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...ANIMATION_CONFIG.fade, delay: 0.2 }}
               >
-                Haven Protocol allows users to generate user-owned content and
-                participate in voting using Web3 blockchain technology. This
-                ensures a decentralized and transparent platform where users
-                have full control and ownership over their contributions.
+                Sinbox is a web3 platform where community members classify short video clips 
+                and earn rewards for training better Visual Language Models. Join the future 
+                of AI-powered video understanding.
               </motion.p>
             </div>
 
@@ -109,7 +107,6 @@ function Hero() {
                 <motion.a
                   key={button.href}
                   href={button.href}
-                  target={button.target}
                   className={`font-mono ${button.className} px-6 py-3 rounded-lg transition-colors uppercase tracking-wider`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

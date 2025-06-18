@@ -33,32 +33,32 @@ const ANIMATION_CONFIG = {
 const TECH_CARDS = [
   {
     Icon: Server,
-    title: "Solana Infrastructure",
+    title: "Video Analysis Engine",
     description:
-      "Leveraging Solana's high-performance blockchain for 65,000+ TPS and sub-second finality",
+      "Advanced AI models for scene segmentation, object detection, and activity recognition in short-form video content",
   },
   {
     Icon: Shield,
-    title: "Zero-Knowledge Proofs",
+    title: "Privacy-First Design",
     description:
-      "Advanced cryptographic protocols ensuring participant privacy and data security",
+      "Local-first processing ensures your personal videos stay private while contributing to public model training",
   },
   {
     Icon: Cpu,
-    title: "ML Infrastructure",
+    title: "Community Consensus",
     description:
-      "Sophisticated machine learning models for advanced video segmentation and analysis",
+      "Betting and reputation system that rewards accurate classifications and maintains high-quality training data",
   },
 ] as const;
 
 const SPECIFICATIONS = [
   {
-    title: "Computational Model",
-    formula: "L(θ) = ∑[Li(θi)] + R(θ)",
+    title: "Video Classification Model",
+    formula: "C(v) = f(θ, S, A, R)",
   },
   {
     title: "Consensus Validation",
-    formula: "C = f(S,A,R)",
+    formula: "R = Σ(w_i * c_i) / Σ(w_i)",
   },
 ] as const;
 
@@ -129,6 +129,7 @@ const Specification = memo(({ title, formula }: SpecificationProps) => (
 const Technology = () => {
   return (
     <Section
+      id="technology"
       size="xl"
       align="center"
       spacing="xl"
@@ -150,12 +151,12 @@ const Technology = () => {
             <h1 className="text-7xl font-clash font-black tracking-wide leading-none bg-gradient-to-t bg-clip-text text-transparent from-slate-200 to-gray-200/70">
               Our{" "}
               <span className="bg-gradient-to-t bg-clip-text text-transparent from-red-400 to-pink-600 font-bold drop-shadow-sm">
-                Architecture
+                Technology
               </span>
             </h1>
             <p className="font-jakarta text-muted-foreground text-lg font-medium tracking-wide uppercase">
-              Built on cutting-edge blockchain and AI technologies to enable
-              secure, scalable dataset generation
+              Built on cutting-edge AI and community consensus to enable 
+              secure, scalable video classification and model training
             </p>
           </motion.div>
         </div>

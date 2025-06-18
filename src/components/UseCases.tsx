@@ -11,27 +11,27 @@ import { RetroShapes } from "./ui/retro-shapes";
 const USE_CASES = [
   {
     icon: Video,
-    title: "Enhanced Video Understanding",
+    title: "Short-Form Video Classification",
     description:
-      "Automatic labeling and metadata generation for short-form video platforms, enabling improved content discovery and recommendations",
+      "Classify and tag short video clips to improve content discovery, recommendations, and search capabilities across video platforms",
   },
   {
     icon: Bot,
-    title: "Next-Gen Visual Language Models",
+    title: "Visual Language Model Training",
     description:
-      "Advanced AI models capable of understanding and responding to complex visual and behavioral cues",
+      "Contribute to training AI models that can understand complex visual content, actions, and contextual information in videos",
   },
   {
     icon: Eye,
-    title: "Content Moderation",
+    title: "Content Moderation & Safety",
     description:
-      "Training AI for nuanced content understanding, enabling more effective and fair moderation practices",
+      "Help train AI systems for nuanced content understanding, enabling more effective and fair content moderation practices",
   },
   {
     icon: Shield,
-    title: "Responsible AI Development",
+    title: "Privacy-Preserving AI Development",
     description:
-      "Creating meticulously curated datasets with robust governance frameworks for ethical AI advancement",
+      "Participate in AI advancement while maintaining data privacy through local-first processing and community consensus",
   },
 ] as const;
 
@@ -117,8 +117,8 @@ const UseCases = () => {
               </span>
             </Heading>
             <Text className="text-lg md:text-xl font-mono text-center text-gray-400 max-w-2xl lg:text-left">
-              Transforming multiple industries through advanced AI dataset
-              generation
+              Transforming video understanding through community-driven AI training 
+              and classification
             </Text>
           </div>
         </motion.div>

@@ -36,50 +36,50 @@ const ANIMATION_CONFIG = {
 const ADVANCED_FEATURES = [
   {
     icon: Lock,
-    title: "Premium Access System",
+    title: "Privacy-First Processing",
     description:
-      "Secure tiered access to exclusive content and advanced AI features",
+      "Your personal videos stay local while contributing to public model training through secure metadata sharing",
   },
   {
     icon: Star,
-    title: "Progressive Enhancement",
+    title: "Reputation & Rewards",
     description:
-      "Unlock additional capabilities and features as you contribute to the ecosystem",
+      "Build reputation through accurate classifications and earn rewards based on community consensus and betting success",
   },
   {
     icon: Brain,
-    title: "AI Integration",
+    title: "AI Model Integration",
     description:
-      "Advanced machine learning models provide intelligent content analysis and recommendations",
+      "Advanced Visual Language Models provide intelligent video analysis and classification assistance",
   },
 ] as const;
 
 const COMMUNITY_FEATURES = [
   {
     icon: Database,
-    title: "Content Curation",
+    title: "Video Classification",
     description:
-      "Contribute to AI dataset refinement through intelligent content labeling",
+      "Classify short video clips with scene segmentation, object detection, and activity recognition",
   },
   {
     icon: Shield,
     title: "Quality Assurance",
     description:
-      "Advanced validation systems ensure high-quality content and contributions",
+      "Community consensus and betting system ensures high-quality training data and accurate classifications",
   },
   {
     icon: Users,
-    title: "Decentralized Governance",
+    title: "Community Governance",
     description:
-      "Community-driven decision making based on contribution and engagement",
+      "Participate in platform decisions and contribute to the future of AI-powered video understanding",
   },
 ] as const;
 
 const STATS = [
-  { icon: Box, title: "Technology Stack", value: "TBD" },
-  { icon: Users, title: "Community Model", value: "TBD" },
-  { icon: Lock, title: "Security Model", value: "TBD" },
-  { icon: Brain, title: "AI Architecture", value: "TBD" },
+  { icon: Box, title: "Video Analysis", value: "Real-time" },
+  { icon: Users, title: "Community Model", value: "Consensus" },
+  { icon: Lock, title: "Privacy Model", value: "Local-first" },
+  { icon: Brain, title: "AI Training", value: "Continuous" },
 ] as const;
 
 interface FeatureProps {
@@ -162,6 +162,7 @@ const Innovation = () => {
 
   return (
     <Section
+      id="innovation"
       background="muted"
       size="xl"
       align="center"
@@ -179,12 +180,12 @@ const Innovation = () => {
             <Heading className="tracking-tight mb-4">
               Our{" "}
               <span className="bg-gradient-to-b bg-clip-text text-transparent from-red-400 to-pink-500">
-                Innovative Design
+                Platform Features
               </span>
             </Heading>
             <Text className="lg:text-lg md:text-xl font-mono text-gray-400 max-w-2xl">
-              HAVEN leverages cutting-edge AI and blockchain technology to
-              create a revolutionary ecosystem
+              Sinbox leverages cutting-edge AI and community consensus to 
+              create a revolutionary video classification ecosystem
             </Text>
           </div>
         </motion.div>
