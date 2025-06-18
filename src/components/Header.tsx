@@ -10,7 +10,7 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Brain className="h-8 w-8 text-purple-500" />
-            <span className="ml-2 text-2xl font-bold text-white">HAVEN</span>
+            <span className="ml-2 text-2xl font-bold text-white">Sinbox</span>
           </div>
 
           <nav className="hidden md:flex space-x-8">
@@ -18,19 +18,19 @@ const Header = () => {
               href="#technology"
               className="text-gray-300 hover:text-purple-500 transition"
             >
-              Technology
+              Features
             </a>
             <a
               href="#use-cases"
               className="text-gray-300 hover:text-purple-500 transition"
             >
-              Use Cases
+              How It Works
             </a>
             <a
               href="#tokenomics"
               className="text-gray-300 hover:text-purple-500 transition"
             >
-              Tokenomics
+              Rewards
             </a>
           </nav>
 
@@ -55,19 +55,19 @@ const Header = () => {
               href="#technology"
               className="block px-3 py-2 text-gray-300 hover:text-purple-500"
             >
-              Technology
+              Features
             </a>
             <a
               href="#use-cases"
               className="block px-3 py-2 text-gray-300 hover:text-purple-500"
             >
-              Use Cases
+              How It Works
             </a>
             <a
               href="#tokenomics"
               className="block px-3 py-2 text-gray-300 hover:text-purple-500"
             >
-              Tokenomics
+              Rewards
             </a>
           </div>
         </div>
