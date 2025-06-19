@@ -19,7 +19,7 @@ const BUTTONS = [
     delay: 0.4,
   },
   {
-    href: "#how-it-works",
+    href: "https://app.sinbox.fun/",
     text: "Start Classifying",
     className: "text-white bg-primary/30 hover:bg-primary/50",
     delay: 0.5,
@@ -30,7 +30,7 @@ function Hero() {
   const [titleIndex, setTitleIndex] = useState(0);
 
   const titles = useMemo(
-    () => ["Goon to Earn", "Video Intelligence", "Community-Powered", "SINBOX"],
+    () => [ "Engagement","Gooning Sessions","Views", "Meat Jerking","Swipes", "Fap Fap Fap", "Interactions", "Contributions", "Masturbations",],
     []
   );
 
@@ -73,8 +73,8 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...ANIMATION_CONFIG.fade }}
               >
-                The Future of Video is
-                <div className="relative flex w-full justify-center overflow-hidden text-center h-[1.2em] mt-2">
+               Get Rewarded for your
+                <div className="relative flex w-full justify-center overflow-hidden text-center h-[1.5em] mt-2">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={titleIndex}
@@ -96,7 +96,7 @@ function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...ANIMATION_CONFIG.fade, delay: 0.2 }}
               >
-                Sinbox is a web3 platform where community members classify short video clips 
+                Sinbox is an InfoFi platform where community members classify short video clips 
                 and earn rewards for training better Visual Language Models. Join the future 
                 of AI-powered video understanding.
               </motion.p>

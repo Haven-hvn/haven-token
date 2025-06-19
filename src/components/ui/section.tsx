@@ -25,7 +25,7 @@ const sectionVariants = cva("relative w-full", {
       right: "text-right items-end",
     },
     container: {
-      default: "container",
+      default: "container mx-auto",
       full: "w-full px-4 sm:px-6 lg:px-8",
       screen: "w-screen",
     },

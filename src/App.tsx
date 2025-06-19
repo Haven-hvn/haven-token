@@ -2,22 +2,30 @@ import { useLayoutEffect, lazy, Suspense } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import Navbar from "./components/Navbar";
 import { Hero } from "./components/ui/animated-hero";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { debounce } from "./lib/utils";
 
+// Import test file for component verification
+import "./test-components";
+
+// Fallback components for when lazy loading fails
+const TechnologyFallback = () => <div className="min-h-[400px] flex items-center justify-center text-gray-400">Technology section temporarily unavailable</div>;
+const UseCasesFallback = () => <div className="min-h-[400px] flex items-center justify-center text-gray-400">Use Cases section temporarily unavailable</div>;
+const FooterFallback = () => <div className="min-h-[200px] flex items-center justify-center text-gray-400">Footer temporarily unavailable</div>;
+const JoinUsFallback = () => <div className="min-h-[400px] flex items-center justify-center text-gray-400">Join Us section temporarily unavailable</div>;
+const DMCFallback = () => <div className="min-h-[400px] flex items-center justify-center text-gray-400">DMCA page temporarily unavailable</div>;
+const DesignSystemDemoFallback = () => <div className="min-h-[400px] flex items-center justify-center text-gray-400">Design system demo temporarily unavailable</div>;
+
 // Lazy load non-critical components
 const Technology = lazy(() => import("./components/Technology"));
 const UseCases = lazy(() => import("./components/UseCases"));
-const Innovation = lazy(() => import("./components/Innovation"));
 const Footer = lazy(() => import("./components/Footer"));
 const JoinUs = lazy(() => import("./components/JoinUs"));
 const DMCA = lazy(() => import("./components/DMCA"));
-const Whitepaper = lazy(() => import("./components/Whitepaper"));
-const DesignSystemDemo = lazy(
-  () => import("./components/ui/design-system-demo")
-);
+const DesignSystemDemo = lazy(() => import("./components/ui/design-system-demo"));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +34,39 @@ const LoadingFallback = () => (
   <div className="min-h-[200px] flex items-center justify-center">
     <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-white"></div>
   </div>
+);
+
+// Error fallback component
+const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
+  <div className="min-h-[200px] flex items-center justify-center flex-col gap-4">
+    <div className="text-red-400">Something went wrong loading this section</div>
+    <button 
+      onClick={resetErrorBoundary}
+      className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors"
+    >
+      Try again
+    </button>
+  </div>
+);
+
+// Component wrapper with error handling
+const SafeLazyComponent = ({ 
+  LazyComponent, 
+  FallbackComponent 
+}: { 
+  LazyComponent: React.LazyExoticComponent<React.ComponentType<any>>;
+  FallbackComponent: React.ComponentType;
+}) => (
+  <ErrorBoundary 
+    FallbackComponent={ErrorFallback}
+    onError={(error) => {
+      console.error("Component failed to load:", error);
+    }}
+  >
+    <Suspense fallback={<LoadingFallback />}>
+      <LazyComponent />
+    </Suspense>
+  </ErrorBoundary>
 );
 
 function App() {
@@ -41,7 +82,6 @@ function App() {
       const sections = [
         ".technology-section",
         ".use-cases-section",
-        ".innovation-section",
       ];
 
       sections.forEach((section) => {
@@ -83,52 +123,35 @@ function App() {
 
   return (
     <Router>
-      <div className="relative bg-black text-white">
-        <div className="flex flex-col">
+      <div className="relative bg-black text-white min-h-screen w-full">
+        <div className="flex flex-col w-full">
           <Navbar />
           <Routes>
             <Route
               path="/"
               element={
-                <main className="relative">
+                <main className="relative w-full">
                   <Hero />
-                  <Suspense fallback={<LoadingFallback />}>
-                    <Technology />
-                    <UseCases />
-                    <Innovation />
-                    <JoinUs />
-                  </Suspense>
+                  <SafeLazyComponent LazyComponent={Technology} FallbackComponent={TechnologyFallback} />
+                  <SafeLazyComponent LazyComponent={UseCases} FallbackComponent={UseCasesFallback} />
+                  <SafeLazyComponent LazyComponent={JoinUs} FallbackComponent={JoinUsFallback} />
                 </main>
               }
             />
             <Route
               path="/dmca"
               element={
-                <Suspense fallback={<LoadingFallback />}>
-                  <DMCA />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/whitepaper"
-              element={
-                <Suspense fallback={<LoadingFallback />}>
-                  <Whitepaper />
-                </Suspense>
+                <SafeLazyComponent LazyComponent={DMCA} FallbackComponent={DMCFallback} />
               }
             />
             <Route
               path="/design-system"
               element={
-                <Suspense fallback={<LoadingFallback />}>
-                  <DesignSystemDemo />
-                </Suspense>
+                <SafeLazyComponent LazyComponent={DesignSystemDemo} FallbackComponent={DesignSystemDemoFallback} />
               }
             />
           </Routes>
-          <Suspense fallback={<LoadingFallback />}>
-            <Footer />
-          </Suspense>
+          <SafeLazyComponent LazyComponent={Footer} FallbackComponent={FooterFallback} />
         </div>
       </div>
     </Router>

@@ -11,27 +11,16 @@ import { RetroShapes } from "./ui/retro-shapes";
 const USE_CASES = [
   {
     icon: Video,
-    title: "Short-Form Video Classification",
+    title: "Haven Player VLM Training",
     description:
-      "Classify and tag short video clips to improve content discovery, recommendations, and search capabilities across video platforms",
+      "Train Visual Language Models for Haven Player - the local-first AI video analysis tool",
+    link: "https://github.com/Haven-hvn/haven-player",
   },
   {
     icon: Bot,
-    title: "Visual Language Model Training",
+    title: "Flux Model Development",
     description:
-      "Contribute to training AI models that can understand complex visual content, actions, and contextual information in videos",
-  },
-  {
-    icon: Eye,
-    title: "Content Moderation & Safety",
-    description:
-      "Help train AI systems for nuanced content understanding, enabling more effective and fair content moderation practices",
-  },
-  {
-    icon: Shield,
-    title: "Privacy-Preserving AI Development",
-    description:
-      "Participate in AI advancement while maintaining data privacy through local-first processing and community consensus",
+      "Improve NSFW video generation models",
   },
 ] as const;
 
@@ -64,10 +53,11 @@ interface UseCaseCardProps {
   icon: (typeof USE_CASES)[number]["icon"];
   title: string;
   description: string;
+  link?: string;
 }
 
 const UseCaseCard = memo(
-  ({ icon: Icon, title, description }: UseCaseCardProps) => (
+  ({ icon: Icon, title, description, link }: UseCaseCardProps) => (
     <motion.div
       variants={ANIMATION_CONFIG.item}
       whileHover={{ scale: 1.02 }}
@@ -82,7 +72,22 @@ const UseCaseCard = memo(
         <Heading level="h3" className="text-xl mb-3">
           {title}
         </Heading>
-        <Text className="text-gray-400">{description}</Text>
+        <Text className="text-gray-400">
+          {description}
+          {link && (
+            <>
+              {" "}
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-400 hover:text-red-300 underline transition-colors"
+              >
+                View on GitHub →
+              </a>
+            </>
+          )}
+        </Text>
       </Card>
     </motion.div>
   )
@@ -99,7 +104,7 @@ const UseCases = () => {
       background="muted"
       size="xl"
       align="center"
-      className="bg-black relative"
+      className="bg-black relative use-cases-section"
     >
       <RetroShapes className="z-0 opacity-100" />
       <Container className="relative z-10" ref={ref}>
@@ -116,10 +121,6 @@ const UseCases = () => {
                 Cases
               </span>
             </Heading>
-            <Text className="text-lg md:text-xl font-mono text-center text-gray-400 max-w-2xl lg:text-left">
-              Transforming video understanding through community-driven AI training 
-              and classification
-            </Text>
           </div>
         </motion.div>
 
@@ -127,7 +128,7 @@ const UseCases = () => {
           variants={ANIMATION_CONFIG.container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto"
         >
           {USE_CASES.map((useCase) => (
             <UseCaseCard key={useCase.title} {...useCase} />

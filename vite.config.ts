@@ -7,4 +7,21 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['framer-motion', 'gsap'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
+        },
+      },
+    },
+  },
+  server: {
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'unsafe-none',
+      'Cross-Origin-Opener-Policy': 'unsafe-none',
+    },
+  },
 });

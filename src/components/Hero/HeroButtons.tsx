@@ -69,7 +69,7 @@ const HeroButtons: React.FC = () => {
         className="relative group"
       >
         <a
-          href="https://havenapp.orbiter.website/"
+          href="https://app.sinbox.fun/"
           target="_blank"
           rel="noopener noreferrer"
           className="relative inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium text-white overflow-hidden group"
@@ -93,38 +93,6 @@ const HeroButtons: React.FC = () => {
             </motion.span>
           </span>
         </a>
-      </motion.div>
-
-      <motion.div
-        initial="rest"
-        whileHover="hover"
-        animate="rest"
-        variants={buttonVariants}
-        className="relative group"
-      >
-        <Link
-          to="/whitepaper"
-          className="relative inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium overflow-hidden"
-        >
-          <motion.span
-            className="absolute inset-0 bg-white/10 backdrop-blur-sm border border-white/20"
-            variants={glowVariants}
-            style={{
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-            }}
-          />
-          <motion.span
-            className="absolute inset-0 bg-gradient-to-r from-purple-700/20 via-violet-600/20 to-purple-700/20 blur-xl opacity-50"
-            variants={glowVariants}
-          />
-          <span className="relative flex items-center gap-3 text-white z-10">
-            <motion.span variants={iconVariants}>
-              <FileText className="h-5 w-5" />
-            </motion.span>
-            <span>Read Whitepaper</span>
-          </span>
-        </Link>
       </motion.div>
     </div>
   );

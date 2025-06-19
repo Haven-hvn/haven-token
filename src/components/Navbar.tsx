@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Video, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "./ui/icon-button";
@@ -16,9 +16,8 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: "Technology", href: "/#technology" },
-  { name: "How It Works", href: "/#innovation" },
   { name: "Join Us", href: "/#join-us" },
-  { name: "Documentation", href: "/whitepaper", isExternal: true },
+  { name: "Documentation", href: "https://haven-network-2.gitbook.io/haven-network-docs", isExternal: true },
 ];
 
 interface NavbarProps {
@@ -67,7 +66,11 @@ export const Navbar = ({ className }: NavbarProps) => {
             animate="visible"
             className="flex items-center gap-2"
           >
-            <Video className="h-8 w-8 text-primary" />
+            <img 
+              src="/android-chrome-192x192.png" 
+              alt="Sinbox Logo" 
+              className="h-8 w-8 object-contain"
+            />
             <span className="text-2xl font-bold font-clash">SINBOX</span>
           </motion.div>
         </a>
