@@ -69,7 +69,7 @@ const HeroButtons: React.FC = () => {
         className="relative group"
       >
         <a
-          href="https://app.sinbox.fun/"
+          href="https://watch.sinbox.fun/"
           target="_blank"
           rel="noopener noreferrer"
           className="relative inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium text-white overflow-hidden group"

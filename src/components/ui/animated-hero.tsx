@@ -19,7 +19,7 @@ const BUTTONS = [
     delay: 0.4,
   },
   {
-    href: "https://app.sinbox.fun/",
+    href: "https://watch.sinbox.fun/",
     text: "Start Classifying",
     className: "text-white bg-primary/30 hover:bg-primary/50",
     delay: 0.5,
