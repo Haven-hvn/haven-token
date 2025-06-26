@@ -17,7 +17,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: "Technology", href: "/#technology" },
   { name: "Join Us", href: "/#join-us" },
-  { name: "Documentation", href: "https://haven-network-2.gitbook.io/haven-network-docs", isExternal: true },
+  { name: "Documentation", href: "https://haven-hvn.any.org/sinbox-documentation", isExternal: true },
 ];
 
 interface NavbarProps {

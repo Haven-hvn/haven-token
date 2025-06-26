@@ -11,7 +11,7 @@ const socialLinks = [
     icon: MessageSquare,
     title: "Discord",
     description: "Join our video classification community",
-    link: "https://discord.com/invite/57mPMDfQew",
+    link: "https://discord.gg/8H4uYSGaYz",
   },
   {
     icon: Twitter,
@@ -21,9 +21,9 @@ const socialLinks = [
   },
   {
     icon: MessagesSquare,
-    title: "Telegram (Coming Soon)",
+    title: "Telegram",
     description: "Get help with video classification",
-    link: "https://t.me/xxx",
+    link: "https://t.me/sinboxfun",
   },
 ];
 
